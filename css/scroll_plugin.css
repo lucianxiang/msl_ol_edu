@@ -1,0 +1,34 @@
+/*文字无缝滚动*/
+.txtScroll-top {
+    overflow: hidden;
+    position: relative;
+}
+
+.txtScroll-top .bd {
+    padding: 15px;
+}
+
+.txtScroll-top .infoList li {
+    height: 24px;
+    line-height: 24px;
+    overflow: hidden
+}
+
+.txtScroll-top .infoList li .date {
+    float: right;
+    color: #999;
+}
+
+/*图片无缝滚动*/
+
+
+
+
+
+
+
+
+
+
+
+

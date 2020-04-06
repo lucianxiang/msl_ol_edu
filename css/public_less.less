@@ -1,0 +1,192 @@
+body {
+  background: #eeeeee;
+
+  .page {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+
+    .page_container {
+      overflow: scroll;
+      height: 100%;
+      /*菜单导航*/
+
+      .nav_logo_toggle {
+        background-color: #0e90d2;
+        background-image: linear-gradient(to bottom right, #0ea5eb, #0e90d2);
+
+        .nav_logo {
+          float: left;
+
+          a {
+            line-height: 1rem;
+
+            img {
+              display: inline;
+              width: 2rem;
+            }
+          }
+        }
+
+        .nav_toggle {
+          float: right;
+          text-align: center;
+          margin-top: 0.08rem;
+          padding: 0.2rem;
+
+          span {
+            display: block;
+            width: 0.44rem;
+            height: 0.04rem;
+            border-radius: 0.02rem;
+            background: #fff;
+            margin-top: 0.1rem;
+          }
+        }
+      }
+
+      /*面包屑*/
+
+      .breadcrumb {
+        font-size: 0.28rem;
+        line-height: 0.4rem;
+        margin: 0;
+
+        div {
+          background: #fff;
+          padding-left: 0.2rem;
+          border-radius: 0.1rem;
+          a {
+            font-size: 0.28rem;
+            line-height: 0.6rem;
+            color: #337ab7;
+          }
+        }
+
+      }
+
+      /*版权地址*/
+
+      footer {
+        margin: 0.2rem 0 0 0;
+        padding: 0.4rem 0.2rem;
+        background: #333333;
+
+        h1, h2, h3, h4 {
+          font-size: 0.28rem;
+          line-height: 0.4rem;
+          color: #ffffff;
+          text-align: center;
+        }
+      }
+
+      /*返回顶部*/
+
+      .right_top {
+        position: fixed;
+        right: 0.2rem;
+        top: 70%;
+        width: 0.8rem;
+        height: 0.8rem;
+      }
+    }
+
+    /*导航菜单*/
+
+    .page_nav_menu_shadow {
+      position: absolute;
+      z-index: 1000;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background: #000;
+      opacity: 0.5;
+    }
+
+    .page_nav_menu {
+      position: absolute;
+      width: 75%;
+      height: 100%;
+      background-color: #0e90d2;
+      background-image: linear-gradient(#17b4df, #0358fa);
+      z-index: 2000;
+      top: 0;
+      left: 0;
+      bottom: 0;
+
+      .page_nav_menu_head {
+        div {
+          a span.iconfont_people {
+            color: #fff;
+            font-size: 1rem;
+          }
+
+          div.login_register_wrap {
+            float: right;
+            padding: 0.4rem 0.6rem;
+
+            div {
+              border: 0.02rem solid #fff;
+              padding: 0.1rem 0.2rem;
+              box-sizing: border-box;
+              letter-spacing: 0.06rem;
+              border-radius: 0.06rem;
+
+              a {
+                color: #fff;
+                font-size: 0.3rem;
+                line-height: 0.3rem;
+                text-align: center;
+              }
+            }
+
+            div:nth-child(1) {
+              float: left;
+              margin-right: 0.2rem
+            }
+
+            div:nth-child(2) {
+              float: left;
+            }
+          }
+        }
+      }
+
+      .page_nav_menu_content {
+        .container-fluid .accordion .accordion-group {
+          .accordion-heading a {
+            display: block;
+            color: #fff;
+            font-size: 0.3rem;
+            line-height: 1rem;
+          }
+
+          .accordion-heading a.accordion-toggle {
+            color: #fff;
+            font-size: 0.3rem;
+            line-height: 1rem;
+
+            span {
+              float: right;
+              font-size: 0.3rem;
+            }
+          }
+
+          .accordion-body .accordion-inner {
+            padding: 0 0 0 0.6rem;
+
+            li a {
+              color: #fff;
+              line-height: 0.8rem;
+              font-size: 0.3rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+

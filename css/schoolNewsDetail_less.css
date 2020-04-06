@@ -1,0 +1,14 @@
+.middle_container {
+  min-height: 8.7rem;
+}
+.middle_container .container-fluid {
+  padding: 0;
+}
+.middle_container .container-fluid img {
+  width: 100%;
+}
+.middle_container .container-fluid p {
+  padding: 0.2rem;
+  line-height: 0.4rem;
+}
+/*# sourceMappingURL=schoolNewsDetail_less.css.map */

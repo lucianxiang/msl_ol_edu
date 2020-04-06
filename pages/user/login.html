@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="css/user_iconfont.css">
+    <link rel="stylesheet" type="text/css" href="css/amazeui.min.css">
+    <link rel="stylesheet" type="text/css" href="css/appuser.css">
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="js/amazeui.min.js"></script>
+    <script type="text/javascript" src="layui/layui.js"></script>
+    <style>
+        html, body {
+            background: url(img/login_bg.png) no-repeat;
+            background-size: cover;
+        }
+    </style>
+    <link rel="stylesheet" href="layui/css/modules/code.css">
+</head>
+<body>
+
+<div class="am-text-center logo"><a href="/"><img src="http://sl518.com/images/sl/logo_hei.png"/></a></div>
+<div class="am-text-right am-margin-horizontal am-text-sm tips_login">还没有？<a href="register.html">立即注册</a></div>
+<div class="am-padding-horizontal m_form">
+    <form class="form">
+        <ul class="am-list am-list-static member_data">
+            <li>
+                <b class="iconfont icon-iconfont am-margin-right"></b>
+                <input class="text" type="text" id="mobile" name="phone" placeholder="输入昵称/手机号码" datatype="n11-11"
+                       nullmsg="请输入昵称/手机号码！"/>
+            </li>
+            <li>
+                <b class="iconfont icon-mima am-margin-right"></b>
+                <input id="sms_code" class="text" type="password" name="password" placeholder="输入密码" datatype="*4-25"
+                       nullmsg="密码范围在4~25位之间！"/>
+            </li>
+            <li>
+                <b class="iconfont icon-mima1 am-margin-right"></b>
+                <input id="code" class="text" type="text" style="width: 36%" name="varcode" placeholder="请输入验证码"
+                       datatype="*4-4" nullmsg="请输入验证码！" errormsg="验证码格式错误！">
+                <img src="http://sso.sl518.com/captcha/login.html" id="codeimg"
+                     onclick="$(this).attr('src','http://sso.sl518.com/captcha/login.html?x='+Math.random())"
+                     style="width: 130px;height: 38px;;float: right;margin-top: -6px;">
+            </li>
+        </ul>
+        <p class="am-text-sm am-text-right"><a class="colorfff" href="javascript:;">忘记密码？</a></p>
+        <button type="submit" id="loginbtn" class="am-btn-success" style="width: 100%;">立即登录</button>
+    </form>
+</div>
+
+</body>
+
+
+<script type="text/javascript" src="js/validform/Validform_v5.3.2_min.js"></script>
+<script type="text/javascript">
+    var index;
+    var layer;
+    layer = layui.layer;
+    $(function () {
+        var form = $(".form").Validform({
+            btnSubmit: "#loginbtn",
+            ajaxPost: true,
+            postonce: true,
+            tiptype: function (msg, o, cssctl) {
+                // console.log(111,msg,o,cssctl)
+                if (!o.obj.is("form")) {
+                    if (o.type == 3) {
+                        layer.msg(msg, {shift: 6});
+                    }
+                    ;
+                    if (o.type == 4) {
+                        layer.msg(msg, {shift: 6});
+                    }
+                    ;
+                }
+            },
+            beforeSubmit: function (curform) {
+                // console.log(222,curform)
+                index = layer.load(0, {
+                    shade: [0.1, '#fff'] //0.1透明度的白色背景
+                });
+            },
+            callback: function (data) {
+                // console.log(333,data)
+                if (data.error === 0) {
+                    layer.msg("登录成功！");
+                    // location.href="/Home/sync?redirect="+data.url+"&code="+data.code;
+                } else {
+                    layer.close(Home);
+                    form.resetStatus();
+                    // $("#codeimg").attr('src','/captcha/login.html?x='+Math.random());
+                    layer.msg(data.msg);
+                }
+            }
+        });
+        $("#loginbtn").click(function (e) {
+            alert(111)
+            console.log(e)
+            e.preventDefault();
+            var obj = this;
+            var mobile = $("#mobile").val();
+            var password = $("#sms_code").val();
+            var code = $("#code").val();
+            console.log(mobile, password, code)
+            if (mobile == "") {
+                $("#mobile").focus();
+                layer.msg("请输入手机号！");
+                return false;
+            }
+            if (mobile.length == 11 || /^1[3|4|5|7|8][0-9]\d{4,8}$/.test(mobile)) {
+                $.ajax({
+                    type: "get",
+                    url: "wwww.s518.com/api/login/sms_login.html",
+                    data: {
+                        mobile: mobile,
+                        type: 'login',
+                    }, //表单数据
+                    success: function (d) {
+                        layer.close(index);
+                        if (d.code === 200 === 1) {
+                            layer.msg("发送成功！");
+                            time(obj);
+                        } else {
+                            layer.msg(d.msg);
+                        }
+                    },
+                    beforeSend: function () {
+                        index = layer.load(0, {
+                            shade: [0.1, '#ccc']
+                        });
+                        $(this).css("color", "#fff");
+                        $(this).css("background-color", "#999");
+                        $(this).css("border-color", "#999");
+                        $(this).css("cursor", "default");
+                    }
+                });
+            } else {
+                layer.msg("手机号格式错误！");
+            }
+        });
+
+        function time(t) {
+            if (wait == 0) {
+                t.removeAttribute("disabled");
+                t.value = "获取验证码";
+                t.style.color = "#4bc15a";
+                t.style.backgroundColor = "#fff";
+                t.style.borderColor = "#4bc15a";
+                t.style.cursor = "pointer";
+                t.onmouseover = function () {
+                    t.style.color = '#fff';
+                    t.style.backgroundColor = '#4bc15a';
+                };
+                t.onmouseout = function () {
+                    t.style.color = '#4bc15a';
+                    t.style.backgroundColor = '#fff';
+                };
+                wait = 60;
+                return;
+            } else {
+                t.setAttribute("disabled", true);
+                t.value = "重新发送(" + wait + ")";
+                wait--;
+                setTimeout(function () {
+                        time(t)
+                    },
+                    1000)
+            }
+            ;
+        }
+
+    });
+
+
+</script>
+
+
+</html>
