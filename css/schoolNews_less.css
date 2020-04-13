@@ -1,0 +1,22 @@
+.middle_container {
+  min-height: 8.8rem;
+}
+.middle_container .container .news_shchool_detail .container-fluid {
+  padding: 0;
+}
+.middle_container .container .news_shchool_detail .container-fluid .school_news_title_box {
+  border-bottom: 0.02rem solid #c8c8c8;
+  line-height: 1rem;
+  color: #00a3ff;
+}
+.middle_container .container .news_shchool_detail .container-fluid .school_news_title_box .school_news_title {
+  padding: 0 0.1rem;
+  float: left;
+  border-bottom: 0.04rem solid #00a3ff;
+}
+.middle_container .container .news_shchool_detail .container-fluid .row div div .thumbnail div h3 {
+  text-align: center;
+  font-size: 0.4rem;
+  line-height: 0.7rem;
+}
+/*# sourceMappingURL=schoolNews_less.css.map */
